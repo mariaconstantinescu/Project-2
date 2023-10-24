@@ -2,7 +2,7 @@
 #include <string.h>
 #include <malloc.h>
 
-typedef struct tnod
+typedef struct tnod  //linked list whose nodes have the TNOD type defined 
 {
     char * word;
     int frequency;
@@ -10,7 +10,10 @@ typedef struct tnod
 }TNOD;
 TNOD *first, *last;
 
-char *citcuv(){
+char *citcuv(){  //reads one word and keeps it in the heap memory. The function returns the starting address of the
+memory zone in which the word is maintained, or zero in the case of encountering any other
+character.\\
+
     char t[250],c;
     char *p;
     int i=0;
@@ -30,19 +33,19 @@ char *citcuv(){
     return 0;
 }
 
-int incnod(TNOD *p)
+int incnod(TNOD *p)  //loads the current data in a TNOD type node.
 {
     if ((p->word = citcuv()) == 0) return -1;
     p -> frequency = 1;
     return 1;
 }
-void elibnod(TNOD *p)
+void elibnod(TNOD *p)  //this function releases the zones from the heap memory allocated by the node that was defined in the previously
 {
     free(p->word);
     free(p);
 }
 
-TNOD* add()
+TNOD* add()  //This function allows the adding of a TNOD type node at the end of a simple linked list. This means that after the insertion of this node, it becomes the last node that has no successor.
 {
     TNOD *p;
     int n;
@@ -70,7 +73,9 @@ TNOD* add()
     elibnod(p);
     return 0;
 }
-TNOD* search(char *c)
+TNOD* search(char *c) //This function searches, in the respective list, the node for which the word has as value the key (address) of a given string.
+//The  pointer plays the key role and it is requested to be found the node that points to a given word.
+
 {
     extern TNOD *first;
     TNOD *p;
